@@ -10715,7 +10715,7 @@ MonoBehaviour:
   playerCamera: {fileID: 2024332750}
   canSprint: 1
   outOfBreathAudio: {fileID: 8300000, guid: b6f2e15068c5c414194a3757551f7e4a, type: 3}
-  shootingSound: {fileID: 0}
+  shootingSound: {fileID: 213343048}
 --- !u!114 &1317014897
 MonoBehaviour:
   m_ObjectHideFlags: 0
