@@ -22,7 +22,8 @@ public class PlayerMotor : MonoBehaviour
     float sprintTimer;
     float restTimer;
     bool sprinting;
-      
+
+
 
     [SerializeField]
     private bool canSprint = true;
@@ -30,6 +31,7 @@ public class PlayerMotor : MonoBehaviour
     [Header("Audio Name")]
     [SerializeField] private AudioClip outOfBreathAudio = null;
     private AudioSource audioSource;
+    public AudioSource shootingSound;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +40,7 @@ public class PlayerMotor : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         sprintTimer = 0;
         restTimer = 0;
+        shootingSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -134,9 +137,9 @@ public class PlayerMotor : MonoBehaviour
 
     public void Shoot()
     {
+        shootingSound.Play();
         GameObject bullet = GameObject.Instantiate(Resources.Load("Prefabs/PlayerBullet") as GameObject, gunBarrel.position, playerCamera.transform.rotation);
-
+        
         bullet.GetComponent<Rigidbody>().velocity = UnityEngine.Quaternion.AngleAxis(Random.Range(-1f, 1f), UnityEngine.Vector3.up) * playerCamera.transform.forward * 50;
-
     }
 }
