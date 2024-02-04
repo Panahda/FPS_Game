@@ -27,10 +27,13 @@ public class HealthController : MonoBehaviour
     [SerializeField] private AudioClip hurtAudio = null;
     private AudioSource healthAudioSource;
 
+    Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         healthAudioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -58,6 +61,10 @@ public class HealthController : MonoBehaviour
             UpdateHealth();
             healCooldown = maxHealCooldown;
             startCooldown = true;
+        }
+        else
+        {
+            animator.SetBool("Dead", true);
         }
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerMotor : MonoBehaviour
 {
@@ -10,16 +11,33 @@ public class PlayerMotor : MonoBehaviour
     public float speed = 5f;
     public float gravity = -9.8f;
     public float jumpHeight = 3f;
+    public float sprintMax = 8f;
+    public float restMax = 5f;
+    public Transform gunBarrel;
+    public Camera playerCamera;
 
     bool crouching = false;
     float crouchTimer = 1;
     bool lerpCrouch = false;
-    bool sprinting = false;
+    float sprintTimer;
+    float restTimer;
+    bool sprinting;
+      
+
+    [SerializeField]
+    private bool canSprint = true;
+
+    [Header("Audio Name")]
+    [SerializeField] private AudioClip outOfBreathAudio = null;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        audioSource = GetComponent<AudioSource>();
+        sprintTimer = 0;
+        restTimer = 0;
     }
 
     // Update is called once per frame
@@ -42,6 +60,28 @@ public class PlayerMotor : MonoBehaviour
                 lerpCrouch = false;
                 crouchTimer = 0f;
             }
+        }
+
+        if (sprinting)
+        {
+            sprintTimer += Time.deltaTime;
+            // Debug.Log(sprintTimer);
+            if (sprintTimer > sprintMax)
+            {
+                sprintTimer = 0f;
+                canSprint = false;
+                audioSource.PlayOneShot(outOfBreathAudio);
+            }
+        }
+        else
+        {
+            restTimer += Time.deltaTime;
+        }
+
+        if(restTimer > restMax)
+        {
+            restTimer = 0f;
+            canSprint = true;
         }
     }
 
@@ -78,10 +118,25 @@ public class PlayerMotor : MonoBehaviour
 
     public void Sprint()
     {
-        sprinting = !sprinting;
-        if (sprinting)
+        if (canSprint)
+        {
             speed = 8;
-        else
-            speed = 5;
+            sprinting = true;
+        }
+    }
+
+    public void StopSprint()
+    {
+        speed = 5;
+        sprintTimer = 0;
+        sprinting = false;
+    }
+
+    public void Shoot()
+    {
+        GameObject bullet = GameObject.Instantiate(Resources.Load("Prefabs/PlayerBullet") as GameObject, gunBarrel.position, playerCamera.transform.rotation);
+
+        bullet.GetComponent<Rigidbody>().velocity = UnityEngine.Quaternion.AngleAxis(Random.Range(-1f, 1f), UnityEngine.Vector3.up) * playerCamera.transform.forward * 50;
+
     }
 }
