@@ -11,19 +11,20 @@ public class PlayerMotor : MonoBehaviour
     public float speed = 5f;
     public float gravity = -9.8f;
     public float jumpHeight = 3f;
-    public float sprintMax = 8f;
-    public float restMax = 5f;
+    public float staminaMax = 5f;
+    public float staminaCoolDown = 1f;
     public Transform gunBarrel;
     public Camera playerCamera;
 
     bool crouching = false;
     float crouchTimer = 1;
     bool lerpCrouch = false;
-    float sprintTimer;
-    float restTimer;
     bool sprinting;
+    bool startStaminaCoolDown = false;
+    float cooldown;
 
-
+    [SerializeField]
+    private float currentStamina;
 
     [SerializeField]
     private bool canSprint = true;
@@ -38,8 +39,7 @@ public class PlayerMotor : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         audioSource = GetComponent<AudioSource>();
-        sprintTimer = 0;
-        restTimer = 0;
+        currentStamina = staminaMax;
         shootingSound = GetComponent<AudioSource>();
     }
 
@@ -67,25 +67,39 @@ public class PlayerMotor : MonoBehaviour
 
         if (sprinting)
         {
-            sprintTimer += Time.deltaTime;
-            // Debug.Log(sprintTimer);
-            if (sprintTimer > sprintMax)
+            currentStamina -= Time.deltaTime;
+            startStaminaCoolDown = false;
+            if (currentStamina <= 0)
             {
-                sprintTimer = 0f;
                 canSprint = false;
+                StopSprint();
                 audioSource.PlayOneShot(outOfBreathAudio);
+                startStaminaCoolDown = true;
+                cooldown = 0;
             }
         }
         else
         {
-            restTimer += Time.deltaTime;
+            if(cooldown >= staminaCoolDown)
+            {
+                currentStamina += Time.deltaTime;
+            }
+
+            if((startStaminaCoolDown) && (cooldown <= staminaCoolDown))
+            {
+                cooldown += Time.deltaTime;
+            }
+
+            if(currentStamina >= staminaMax - 0.1f)
+            {
+                currentStamina = staminaMax;
+                startStaminaCoolDown = false;
+                canSprint = true;
+            }
+            startStaminaCoolDown = true;
         }
 
-        if(restTimer > restMax)
-        {
-            restTimer = 0f;
-            canSprint = true;
-        }
+
     }
 
     // Receive input from InputManager.cs and apply to character controller
@@ -123,15 +137,19 @@ public class PlayerMotor : MonoBehaviour
     {
         if (canSprint)
         {
-            speed = 8;
+            speed = 10;
             sprinting = true;
+        }
+        else
+        {
+            speed = 5;
+            sprinting = false; 
         }
     }
 
     public void StopSprint()
     {
         speed = 5;
-        sprintTimer = 0;
         sprinting = false;
     }
 
@@ -141,5 +159,10 @@ public class PlayerMotor : MonoBehaviour
         GameObject bullet = GameObject.Instantiate(Resources.Load("Prefabs/PlayerBullet") as GameObject, gunBarrel.position, playerCamera.transform.rotation);
         
         bullet.GetComponent<Rigidbody>().velocity = UnityEngine.Quaternion.AngleAxis(Random.Range(-1f, 1f), UnityEngine.Vector3.up) * playerCamera.transform.forward * 50;
+    }
+
+    public float CurrentStamina
+    {
+        get { return currentStamina; }
     }
 }
