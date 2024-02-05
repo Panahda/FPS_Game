@@ -16,9 +16,10 @@ public class DoorController : MonoBehaviour
     public void OpenDoor()
     {
         doorAudioSource = GetComponent<AudioSource>();
-        doorAudioSource.PlayOneShot(slidingDoor);
         animator = GetComponent<Animator>();
+        
         Debug.Log("Opening Door");
         animator.SetBool("isOpen", true);
+        doorAudioSource.PlayOneShot(slidingDoor);
     }
 }
