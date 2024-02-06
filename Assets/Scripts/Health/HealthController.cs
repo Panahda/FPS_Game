@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class HealthController : MonoBehaviour
 {
@@ -19,21 +21,25 @@ public class HealthController : MonoBehaviour
     [SerializeField] private float hurtTimer = 0.1f;
 
     [Header("HealTimer")]
-    [SerializeField] private float healCooldown = 3.0f;
-    [SerializeField] private float maxHealCooldown = 3.0f;
+    [SerializeField] private float healCooldown = 4.0f;
+    [SerializeField] private float maxHealCooldown = 4.0f;
     [SerializeField] private bool startCooldown = false;
 
     [Header("Audio Name")]
     [SerializeField] private AudioClip hurtAudio = null;
     private AudioSource healthAudioSource;
 
-    Animator animator;
+    public Camera cam;
+    public Animator animator;
+    public InputManager inputManager;
+    public PlayerLook look;
 
     // Start is called before the first frame update
     void Start()
     {
+        inputManager = GetComponent<InputManager>();
         healthAudioSource = GetComponent<AudioSource>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -64,7 +70,12 @@ public class HealthController : MonoBehaviour
         }
         else
         {
+            Debug.Log("Player Died");
             animator.SetBool("Dead", true);
+            inputManager.setPlayerDead();
+            inputManager.enabled = false;
+            look.setCameraWhenPlayerDead();
+            PlayerDied();
         }
     }
 
@@ -80,7 +91,7 @@ public class HealthController : MonoBehaviour
             }
         }
 
-        if (canRegen)
+        if (canRegen && currentPlayerHealth >= 0)
         {
             if(currentPlayerHealth <= maxPLayerHealth - 0.01)
             {
@@ -94,6 +105,17 @@ public class HealthController : MonoBehaviour
                 canRegen = false;
             }
         }
+    }
+    public void PlayerDied()
+    {
+        // possible to add Death UI
+        StartCoroutine(ReturnToMainAfterDelay(5)); // 5 seconds delay
+    }
+
+    private IEnumerator ReturnToMainAfterDelay(float delayInSeconds)
+    {
+        yield return new WaitForSeconds(delayInSeconds); // Wait for 5 seconds
+        SceneManager.LoadScene("MainMenu"); // Load the Main Menu scene. Make sure the scene name matches your main menu scene name.
     }
 }
  

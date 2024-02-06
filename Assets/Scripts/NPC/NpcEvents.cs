@@ -12,6 +12,8 @@ public class NpcEvents : Interactable
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private GameObject dialoguePanel;
 
+    public GameManager gameManager;
+
     public UnityEvent onDialogueComplete; // Optional: An event to trigger when dialogue is complete
 
     // Override the Interact method from Interactable
@@ -39,6 +41,8 @@ public class NpcEvents : Interactable
             // Reset dialogue to allow it to be repeated or to disable further interaction
             currentLine = 0; // Loop dialogue
             dialoguePanel.SetActive(false);
+
+            gameManager.StartTimer();
         }
     }
 
