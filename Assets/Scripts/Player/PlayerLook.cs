@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerLook : MonoBehaviour
 {
+    // IM2073 Project
     public Camera cam;
     private float xRotation = 0f;
 
@@ -39,3 +40,4 @@ public class PlayerLook : MonoBehaviour
         cam.transform.rotation = Quaternion.Euler(90, 0, 0);
     }
 }
+// End Code

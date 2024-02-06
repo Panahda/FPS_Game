@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    // IM2073 Project
     public TextMeshProUGUI timerText; // Assign in the inspector
     public GameObject timerPanel; // Assign the panel containing the timer Text in the inspector
     public GameObject winUI; // Assign your Win UI panel in the inspector
@@ -73,3 +74,4 @@ public class GameManager : MonoBehaviour
         timerText.text = minutes + ":" + seconds;
     }
 }
+// End Code

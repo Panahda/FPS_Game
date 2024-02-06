@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    // IM2073 Project
     [Header("Health Amount")]
     public float currentHealth = 50.0f;
     [SerializeField] private float maxHealth = 50.0f;
@@ -35,3 +36,4 @@ public class EnemyHealth : MonoBehaviour
     }
 
 }
+// End Code

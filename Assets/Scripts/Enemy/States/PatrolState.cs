@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PatrolState : BaseState
 {
+    // IM2073 Project
     public int waypointIndex;
     public float waitTimer;
     public override void Enter()
@@ -43,3 +44,4 @@ public class PatrolState : BaseState
         }
     }
 }
+// End Code

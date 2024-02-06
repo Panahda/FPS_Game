@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    // IM2073 Project
     private StateMachine stateMachine;
     private NavMeshAgent agent;
     private GameObject player;
@@ -72,3 +73,4 @@ public class Enemy : MonoBehaviour
     }
 
 }
+// End Code

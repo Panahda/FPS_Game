@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
+    // IM2073 Project
     [SerializeField] private AudioClip slidingDoor = null;
     private AudioSource doorAudioSource;
     private Animator animator;
@@ -23,3 +24,4 @@ public class DoorController : MonoBehaviour
         doorAudioSource.PlayOneShot(slidingDoor);
     }
 }
+// End Code

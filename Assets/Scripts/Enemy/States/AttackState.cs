@@ -6,6 +6,7 @@ using Vector3 = UnityEngine.Vector3;
 
 public class AttackState : BaseState
 {
+    // IM2073 Project
     private float moveTimer;
     private float losePlayerTimer;
     public float waitBeforeSearchTime = 8.0f;
@@ -84,3 +85,4 @@ public class AttackState : BaseState
         
     }
 }
+// End Code

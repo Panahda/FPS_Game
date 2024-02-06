@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 public class Path : MonoBehaviour
 {
+    // IM2073 Project
 
     public List<Transform> waypoints;
     [SerializeField]
@@ -52,3 +53,4 @@ public class Path : MonoBehaviour
     }
 #endif
 }
+// End Code

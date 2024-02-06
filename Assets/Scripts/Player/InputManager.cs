@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
+    // IM2073 Project
     private PlayerInput playerInput;
     public PlayerInput.OnFootActions onFoot;
 
@@ -58,3 +59,4 @@ public class InputManager : MonoBehaviour
         isPlayerDead = true;
     }
 }
+// End Code

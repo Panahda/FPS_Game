@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 public class PlayerMotor : MonoBehaviour
 {
+    // IM2073 Project
     private CharacterController controller;
     private Vector3 playerVelocity;
     private bool isGrounded;
@@ -166,3 +167,4 @@ public class PlayerMotor : MonoBehaviour
         get { return currentStamina; }
     }
 }
+// End Code

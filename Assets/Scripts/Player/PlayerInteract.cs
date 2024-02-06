@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-
+    // IM2073 Project
     private Camera cam;
     [SerializeField] // Makes the private variable accessible within the Unity editor without making them public
     private float distance = 3f;
@@ -48,3 +48,4 @@ public class PlayerInteract : MonoBehaviour
         }
     }
 }
+// End Code
