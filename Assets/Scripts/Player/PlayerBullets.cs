@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayersBullet : MonoBehaviour
 {
+    // IM2073 Project
     [SerializeField] private float bulletDamage = 10.0f;
     float bulletTime = 0f;
     private void OnCollisionEnter(Collision collision)
@@ -27,3 +28,4 @@ public class PlayersBullet : MonoBehaviour
         }
     }
 }
+// End Code

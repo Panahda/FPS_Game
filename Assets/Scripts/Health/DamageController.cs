@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DamageController : MonoBehaviour
 {
+    // IM2073 Project
     [SerializeField] private float bombDamage = 10.0f;
 
     [SerializeField] private GameObject explosiveParticle = null;
@@ -43,4 +44,5 @@ public class DamageController : MonoBehaviour
             }
         }
     }
+    // End Code
 }

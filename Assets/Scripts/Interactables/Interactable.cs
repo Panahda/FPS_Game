@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-
+    // IM2073 Project
     // Add or remove an InteractionEvent component to this gameObject.
     public bool useEvents;
     // message displayed to player when looking at an interactable.
@@ -24,3 +24,4 @@ public abstract class Interactable : MonoBehaviour
         // This is a template function to be overridden by our subclasses
     }
 }
+// End Code

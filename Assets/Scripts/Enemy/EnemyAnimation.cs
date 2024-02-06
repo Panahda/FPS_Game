@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyAnimation : MonoBehaviour
 {
+    // IM2073 Project
     Animator animator;
     Enemy enemy;
     EnemyHealth health;
@@ -41,3 +42,4 @@ public class EnemyAnimation : MonoBehaviour
         }
     }
 }
+// End Code

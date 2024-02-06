@@ -7,6 +7,8 @@ using Unity.VisualScripting;
 
 public class HealthController : MonoBehaviour
 {
+
+    // IM2073 Project
     [Header("Player Health Amount")]
     public float currentPlayerHealth = 100.0f;
     [SerializeField] private float maxPLayerHealth = 100.0f;
@@ -118,4 +120,4 @@ public class HealthController : MonoBehaviour
         SceneManager.LoadScene("MainMenu"); // Load the Main Menu scene. Make sure the scene name matches your main menu scene name.
     }
 }
- 
+// End Code

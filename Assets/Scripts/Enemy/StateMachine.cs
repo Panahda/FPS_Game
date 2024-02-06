@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
+    // IM2073 Project
     public BaseState activeState;
     public bool deadState = false;
 
@@ -49,3 +50,4 @@ public class StateMachine : MonoBehaviour
         }
     }
 }
+// End Code

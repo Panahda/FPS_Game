@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagerScript : MonoBehaviour
 {
-        public void LoadScene (string sceneName)
-        {
-            SceneManager.LoadScene(sceneName);
-        }
+    // IM2073 Project
+    public void LoadScene (string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
 
 }
+// End Code

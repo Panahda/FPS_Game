@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Mainmenu : MonoBehaviour
 {
+    // IM2073 Project
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //Loads next active scene in build index
@@ -16,4 +17,4 @@ public class Mainmenu : MonoBehaviour
     }
 }
 
-
+// End Code

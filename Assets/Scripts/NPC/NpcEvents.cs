@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class NpcEvents : Interactable
 {
+    // IM2073 Project
     [SerializeField]
     private string[] dialogueLines; // An array to hold the dialogue lines
     private int currentLine = 0; // Track the current line of dialogue
@@ -52,3 +53,4 @@ public class NpcEvents : Interactable
         Debug.Log(line); // For testing, simply log the dialogue line. Replace this with your UI update logic.
     }
 }
+// End Code

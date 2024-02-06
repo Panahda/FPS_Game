@@ -3,6 +3,7 @@ using UnityEngine.UI; // Import the UI namespace
 
 public class StaminaBar : MonoBehaviour
 {
+    // IM2073 Project
     public PlayerMotor playerMotor; // Reference to the PlayerMotor script
     public Slider staminaSlider; // Reference to the UI Slider
 
@@ -27,3 +28,4 @@ public class StaminaBar : MonoBehaviour
         }
     }
 }
+// End Code

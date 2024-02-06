@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SearchState : BaseState
 {
+    // IM2073 Project
     [SerializeField]
     private float searchTimer;
     private float moveTimer;
@@ -41,3 +42,4 @@ public class SearchState : BaseState
 
     }
 }
+// End Code
